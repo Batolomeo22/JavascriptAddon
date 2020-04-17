@@ -1,7 +1,7 @@
-// ¶ÔDateµÄÀ©Õ¹£¬½« Date ×ª»¯ÎªÖ¸¶¨¸ñÊ½µÄString
-// ÔÂ(M)¡¢ÈÕ(d)¡¢Ğ¡Ê±(h)¡¢·Ö(m)¡¢Ãë(s)¡¢¼¾¶È(q) ¿ÉÒÔÓÃ 1-2 ¸öÕ¼Î»·û£¬
-// Äê(y)¿ÉÒÔÓÃ 1-4 ¸öÕ¼Î»·û£¬ºÁÃë(S)Ö»ÄÜÓÃ 1 ¸öÕ¼Î»·û(ÊÇ 1-3 Î»µÄÊı×Ö)
-// Àı×Ó£º
+// å¯¹Dateçš„æ‰©å±•ï¼Œå°† Date è½¬åŒ–ä¸ºæŒ‡å®šæ ¼å¼çš„String
+// æœˆ(M)ã€æ—¥(d)ã€å°æ—¶(h)ã€åˆ†(m)ã€ç§’(s)ã€å­£åº¦(q) å¯ä»¥ç”¨ 1-2 ä¸ªå ä½ç¬¦ï¼Œ
+// å¹´(y)å¯ä»¥ç”¨ 1-4 ä¸ªå ä½ç¬¦ï¼Œæ¯«ç§’(S)åªèƒ½ç”¨ 1 ä¸ªå ä½ç¬¦(æ˜¯ 1-3 ä½çš„æ•°å­—)
+// ä¾‹å­ï¼š
 // (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
 // (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18
 // let time1 = new Date().Format("yyyy-MM-dd");
@@ -10,15 +10,15 @@
 // create by meizz
 Date.prototype.Format = function (fmt) { 
     let o = {
-        "M+": this.getMonth() + 1, //ÔÂ·İ
-        "d+": this.getDate(), //ÈÕ
-        "h+": this.getHours(), //Ğ¡Ê±
-        "m+": this.getMinutes(), //·Ö
-        "s+": this.getSeconds(), //Ãë
-        "q+": Math.floor((this.getMonth() + 3) / 3), //¼¾¶È
-        "S": this.getMilliseconds() //ºÁÃë
+        "M+": this.getMonth() + 1, //æœˆä»½
+        "d+": this.getDate(), //æ—¥
+        "h+": this.getHours(), //å°æ—¶
+        "m+": this.getMinutes(), //åˆ†
+        "s+": this.getSeconds(), //ç§’
+        "q+": Math.floor((this.getMonth() + 3) / 3), //å­£åº¦
+        "S": this.getMilliseconds() //æ¯«ç§’
     };
-    //test() ·½·¨ÓÃÓÚ¼ì²âÒ»¸ö×Ö·û´®ÊÇ·ñÆ¥ÅäÄ³¸öÄ£Ê½
+    //test() æ–¹æ³•ç”¨äºæ£€æµ‹ä¸€ä¸ªå­—ç¬¦ä¸²æ˜¯å¦åŒ¹é…æŸä¸ªæ¨¡å¼
     if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
     for (let k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
